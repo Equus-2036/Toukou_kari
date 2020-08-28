@@ -7,10 +7,9 @@ using UnityEngine;
  */
 public class Player_Controller : MonoBehaviour
 {
-    [SerializeField]
-    float SPEED = 4.0f;
+    public readonly float SPEED = 0.1f;
     private Rigidbody2D rb;
-    private Vector2 inputAxis;
+    private Vector2 input;
 
     void Start()
     {
@@ -22,13 +21,17 @@ public class Player_Controller : MonoBehaviour
     {
         // x,ｙの入力値を得る
         // それぞれ+や-の値と入力の関連付けはInput Managerで設定されている
-        inputAxis.x = Input.GetAxis("Horizontal");
-        inputAxis.y = Input.GetAxis("Vertical");
+        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     }
 
     private void FixedUpdate()
     {
-        // 速度を代入する
-        rb.velocity = inputAxis.normalized * SPEED;
+        if (input == Vector2.zero)
+        {
+            return;
+        }
+
+        // 既存のポジションに対して，移動量(vector)を加算する
+        rb.position += input * SPEED;
     }
 }

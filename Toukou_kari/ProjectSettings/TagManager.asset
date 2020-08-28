@@ -41,8 +41,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Map Layer
+  - name: Field Layer
     uniqueID: 1727112725
+    locked: 0
+  - name: Wall Layer
+    uniqueID: 2785963725
     locked: 0
   - name: Collision Layer
     uniqueID: 793556545
